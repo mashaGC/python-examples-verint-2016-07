@@ -1,7 +1,12 @@
-"""
-Write a program that randomizes a number
-and prints the sum total of its digits.
-For example if the number was: 2345
-The result should be: 14
-"""
+_author_ = 'mariag'
 
+from random import randint
+
+numInt = randint(1,10000)
+numStr = str(numInt)
+
+sum = 0
+for dig in numStr:
+    sum += int(dig)
+
+print "Num is {}, sum of digits is {}".format(numInt, sum)
