@@ -1,8 +1,13 @@
-"""
-Write a program that reads lines from the user
-until an empty line is inserted.
-After the user typed in an empty line,
-print all previously inserted lines in reverse
-order (from last to first)
-"""
+_author_ = 'mariag'
 
+sen = []
+while True:
+    print 'Please write a sentance'
+    userInput = raw_input()
+    if userInput == '':
+        break
+    sen.append(userInput)
+
+amount = len(sen)
+for i in range(amount):
+    print sen[amount-i-1]
