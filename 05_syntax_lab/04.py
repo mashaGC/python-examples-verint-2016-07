@@ -8,6 +8,5 @@ while True:
         break
     sen.append(userInput)
 
-amount = len(sen)
-for i in range(amount):
-    print sen[amount-i-1]
+for i in reversed(sen):
+    print i
