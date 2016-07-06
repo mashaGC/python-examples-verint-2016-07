@@ -1,13 +1,26 @@
-""" Write a program that searches current working directory
-for files larger than 1MB. Every time you find such a file print
-its name to the user.
+_author_ = 'mariag'
 
-- When the program finds a large file. It should ask the user
-  a message asking if she wants to delete it, and delete the
-  file if requested
+from sys import argv
+import argparse
+import os
 
-- Take threshold and path as command line arguments
+parser = argparse.ArgumentParser(description='Dir path and max size file')
+parser.add_argument("dirPath", type=str, help='path to the directory')
+parser.add_argument("sizeLimit", type=int, help='minimum size of file')
 
-Bonus: Use argparse module to parse command line arguments
-"""
+args = parser.parse_args()
+
+for root, dirs, files in os.walk(args.dirPath):
+    for name in files:
+        size = os.stat(name).st_size >> 20
+        if  size > args.sizeLimit:
+            print 'The file {} size is {}MB'.format(name, size)
+            answer = raw_input('Would you like to delete it? (Y/N): ')
+            if (answer.upper() == 'Y'):
+                os.remove(name)
+                print 'File {} was deleted'.format(name)
+            elif (answer.upper() == 'N'):
+                print 'File {} wasn\'t deleted'.format(name)
+
+print 'No more large files'
 
