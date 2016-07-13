@@ -13,23 +13,17 @@ from collections import Counter
 file_words = 'words.txt'
 wordsDic = {}
 
-#load key=word|value=letter counter to dictionary
+#load key=sorted word|value=original word to dictionary
 with open(file_words, 'r') as f_words:
     for word in f_words:
-        wordsDic[word.rstrip('\n')] = Counter(word.rstrip('\n'))
+        stripWord = word.rstrip('\n')
+        sortedWord = ''.join(sorted(stripWord))
+        if sortedWord in wordsDic:
+            wordsDic[sortedWord].append(stripWord)
+        else:
+            wordsDic[sortedWord] = [stripWord]
 
-#print wordsDic
-delList =[]
-while len(wordsDic)>0:
-    for i in delList:
-        del wordsDic[i]
-    delList = []
-    print("")
-    word = wordsDic.keys()[0]
-    counter_i = wordsDic.get(word)
-    sys.stdout.write(word+" ")
-    del wordsDic[word]
-    for word_i in wordsDic:
-        if  counter_i == wordsDic.get(word_i):
-            sys.stdout.write(word_i+" ")
-            delList.append(word_i)
+for k,v in wordsDic.items():
+    print ""
+    for i in v:
+        sys.stdout.write(i+"\t")
