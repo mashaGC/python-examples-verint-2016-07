@@ -8,13 +8,11 @@ hostsDic = {}
 #load key|value to dictionary
 with open(file_hosts, 'r') as f_hosts:
     for line in f_hosts:
-        host = line.split('=')[0] 
-        ip = line.rstrip('\n').split('=')[1]
+        host, ip = line.rstrip('\n').split('=')
         hostsDic[host] = ip
 
 for host_input in sys.argv[1:]:
-    value = hostsDic.get(host_input,0)
-    if value == 0:
-        print "host:'%s' doesn't exist" % host_input
+    if host_input in hostsDic:
+        print hostsDic.get(host_input)
     else:
-        print value
+        print "host:'{}' doesn't exist".format(host_input)
