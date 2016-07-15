@@ -1,10 +1,12 @@
-"""
-Write a function groupby that takes a list
-and a function and returns a dictionary
-keyd by the return value of the function on the list items
+_author_ = 'mariag'
 
-For example:
-    groupby(lambda s: s[0], ['foo', 'fi', 'hello', 'hi'])
-    returns: { 'f': ['foo','fi'], 'h': ['hello', 'hi'] }
-"""
+import collections
 
+def groupby(func, *args):
+    res_dict = collections.defaultdict(list)
+    for arg in args:
+        res = func(arg)
+        res_dict[res].append(arg)
+    return res_dict
+
+print groupby(lambda(s):s%2==0, 123, 25, 16, 256, 456)
