@@ -1,19 +1,14 @@
 _author_ = 'mariag'
 
 def mysum(*args):
-    sum = 0
-    for i in args:
-        if type(i) == int:
-            sum += i
-    return sum
+    ints = [i for i in args if type(i) == int] 
+    return sum(ints)
 
+#primes = [x for x in range(2, 50) if x not in noprimes]
 
 def mymul(*args):
-    mul = 1
-    for i in args:
-        if type(i) == int:
-            mul *= i
-    return mul
+    ints = [i for i in args if type(i) == int]
+    return reduce(lambda x, y: x*y, ints)
 
 
 print mysum('1',2,3)
