@@ -1,7 +1,19 @@
-"""
-Write a python program that takes numbers in a loop
-and for each number prints its square root
-If value is negative or not a number show 
-a warning and keep reading values
-"""
+_author_ = 'mariag'
 
+import math
+
+while True:
+    num = 0
+    input = raw_input()
+    if input == "":
+        break
+    try:
+        num = float(input) 
+    except ValueError as e:
+        print "{} is not a number. Try again".format(input)
+        continue
+    try:
+        res = math.sqrt(num)
+        print "Sqrt({})={}".format(input,round(res,3))
+    except ValueError as e:
+        print "{} is negative. Try again".format(input)
